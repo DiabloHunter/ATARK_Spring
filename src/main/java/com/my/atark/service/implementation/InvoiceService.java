@@ -289,6 +289,11 @@ public class InvoiceService implements IInvoiceServ {
         return !((invoice == null) || (invoice.getStatus() != InvoiceStatus.CREATED)) && cancelInvoice(invoice);
     }
 
+
+    //////////////
+
+
+
     private synchronized boolean cancelInvoice(Invoice invoice) {
         Set<String> productCodes = invoice.getPayments().keySet();
         try {
