@@ -1,16 +1,14 @@
-package com.my.atark.domain;
+package com.my.atark.entities;
 
 
+import javax.annotation.processing.Generated;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
-/** Invoice entity mapped to invoices table */
 public class Invoice implements Serializable {
-
     private Integer invoiceId;
     private Long invoiceCode;
     private String userName;

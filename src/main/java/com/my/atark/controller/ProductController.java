@@ -1,6 +1,5 @@
 package com.my.atark.controller;
 
-
 import com.my.atark.domain.Product;
 import com.my.atark.exceptions.ProductServiceException;
 import com.my.atark.service.IProductServ;
@@ -54,19 +53,19 @@ public class ProductController {
         return result;
     }
 
-    @PostMapping
+    @PostMapping(path = "administration")
     public void addProduct(@RequestBody Product product) {
         IProductServ serv = ServiceFactory.getProductService();
         serv.addProduct(product);
     }
 
-    @PutMapping
+    @PutMapping(path = "administration")
     public void updateProduct(@RequestBody Product product) {
         IProductServ serv = ServiceFactory.getProductService();
         serv.updateProduct(product);
     }
 
-    @DeleteMapping(path = "{code}")
+    @DeleteMapping(path = "administration/{code}")
     public void deleteProduct(@PathVariable("code") String code) {
         IProductServ serv = ServiceFactory.getProductService();
         serv.deleteProduct(code);

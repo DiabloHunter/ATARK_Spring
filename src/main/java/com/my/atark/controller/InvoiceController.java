@@ -2,10 +2,7 @@ package com.my.atark.controller;
 
 
 import com.my.atark.domain.Invoice;
-import com.my.atark.domain.Product;
-import com.my.atark.exceptions.ProductServiceException;
 import com.my.atark.service.IInvoiceServ;
-import com.my.atark.service.IProductServ;
 import com.my.atark.service.ServiceFactory;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/invoices")
+@RequestMapping(path = "api/administration/invoices")
 public class InvoiceController {
 
     @GetMapping(path = "allInvoices")

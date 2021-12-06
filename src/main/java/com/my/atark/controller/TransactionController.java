@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/transactions")
+@RequestMapping(path = "api/administration/transactions")
 public class TransactionController {
 
     @GetMapping(path = "allTransactions")
