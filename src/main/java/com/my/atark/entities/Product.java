@@ -1,8 +1,11 @@
 package com.my.atark.entities;
 
-/** 'Pruduct' Enity is mapped to project.stock table*/
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "invoices")
 public class Product {
 
     private Integer id;

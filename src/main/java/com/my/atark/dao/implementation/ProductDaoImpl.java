@@ -5,6 +5,9 @@ import com.my.atark.dao.IProductDao;
 import com.my.atark.dao.Mapper;
 import com.my.atark.domain.Product;
 import com.my.atark.exceptions.DataNotFoundException;
+import com.my.atark.exceptions.ProductServiceException;
+import com.my.atark.service.IProductServ;
+import com.my.atark.service.ServiceFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -103,7 +106,13 @@ public class ProductDaoImpl extends GenericAbstractDao<Product> implements IProd
 
     @Override
     public boolean updateProductInDB(Product product) {
-        Integer id = product.getId();
+        IProductServ serv = ServiceFactory.getProductService();
+        Integer id = null;
+        try {
+            id = serv.findProductByCode(product.getCode()).getId();
+        } catch (ProductServiceException e) {
+            e.printStackTrace();
+        }
         return updateInDB(connection, product, SQL_updateProduct, 14, id);
     }
 

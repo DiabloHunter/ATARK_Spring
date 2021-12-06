@@ -1,10 +1,13 @@
 package com.my.atark.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 
-/** Transaction entity mapped to transactions table */
+@Entity
+@Table(name = "invoices")
 public class Transaction implements Serializable {
 
     private Integer transactionId;

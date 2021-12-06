@@ -1,9 +1,12 @@
 package com.my.atark.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 
-/** 'User' Enity is mapped both to project.users & project.user_roles tables*/
+@Entity
+@Table(name = "invoices")
 public class User implements Serializable {
 
     private Integer id;

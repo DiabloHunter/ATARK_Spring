@@ -121,6 +121,20 @@ public class ProductService implements IProductServ {
         }
         return product;
     }
+    @Override
+    public Product findProductById(Integer code) throws ProductServiceException {
+        Product product;
+        try {
+            daoFactory.open();
+            productDao = daoFactory.getProductDao();
+            product = productDao.findProductById(code);
+            daoFactory.close();
+        } catch (DataBaseConnectionException | DataNotFoundException ex) {
+            log.error(ex);
+            throw new ProductServiceException();
+        }
+        return product;
+    }
 
     @Button
     @Override

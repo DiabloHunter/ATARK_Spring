@@ -47,6 +47,8 @@ public interface IProductServ {
      */
     Product findProductByCode(String code) throws ProductServiceException;
 
+    Product findProductById(Integer code) throws ProductServiceException;
+
     /**
      * Adds a new product in DB
      * @param product Product to add

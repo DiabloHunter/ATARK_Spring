@@ -1,17 +1,30 @@
+/*
 package com.my.atark.entities;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 
-/** Payment entity mapped to payments table */
+@Entity
+@Table(name = "invoices")
 public class Payment implements Serializable {
-
+    @Id
+    @GeneratedValue
     private Integer paymentId;
-    private Long orderCode;
+    @Column(nullable = false)
+    @OneToOne(targetEntity = Invoice.class, mappedBy = "invoiceCode", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Long invoiceCode;
+    @Column(nullable = false)
+    @OneToOne(targetEntity = Product.class, mappedBy = "productCode", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private String productCode;
+    @Column(nullable = false)
     private Double quantity;
+    @Column(nullable = false)
     private Double paymentValue;
-    private InvoiceStatus statusId;
+    @Column(nullable = false)
+    @OneToOne(targetEntity = InvoiceStatuses.class, mappedBy = "invoiceStatus", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private InvoiceStatuses statusId;
     private String paymentNotes;
 
     public Payment() {
@@ -22,7 +35,7 @@ public class Payment implements Serializable {
     }
 
     public Long getOrderCode() {
-        return orderCode;
+        return invoiceCode;
     }
 
     public String getProductCode() {
@@ -50,7 +63,7 @@ public class Payment implements Serializable {
     }
 
     public void setOrderCode(Long orderCode) {
-        this.orderCode = orderCode;
+        this.invoiceCode = orderCode;
     }
 
     public void setProductCode(String productCode) {
@@ -81,26 +94,15 @@ public class Payment implements Serializable {
         Payment payment = (Payment) o;
 
         if (paymentId != null ? !paymentId.equals(payment.paymentId) : payment.paymentId != null) return false;
-        return orderCode.equals(payment.orderCode);
+        return invoiceCode.equals(payment.invoiceCode);
     }
 
     @Override
     public int hashCode() {
         int result = paymentId != null ? paymentId.hashCode() : 0;
-        result = 31 * result + orderCode.hashCode();
+        result = 31 * result + invoiceCode.hashCode();
         return result;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("\n");
-        sb.append("Payment Id = ").append(paymentId).append("\n");
-        sb.append("Order Code: ").append(orderCode).append("; ");
-        sb.append("Product Code: ").append(productCode).append("; ");
-        sb.append("Quantity: ").append(quantity).append("; ");
-        sb.append("Payment value: ").append(paymentValue).append("; ");
-        sb.append("Status: ").append(statusId).append("; ");
-        sb.append("Notes: ").append(paymentNotes).append(";\n");
-        return sb.toString();
-    }
 }
+*/
