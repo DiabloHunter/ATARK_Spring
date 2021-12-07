@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/administration/user")
+@RequestMapping(path = "api/administration/userNew")
 public class CommandSaveNewUser  {
 
     @PostMapping
