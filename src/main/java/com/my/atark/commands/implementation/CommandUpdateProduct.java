@@ -7,10 +7,10 @@ import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/product")
+@RequestMapping(path = "api/administration/product")
 public class CommandUpdateProduct {
 
-    @PostMapping
+    @PutMapping
     public void execute(@RequestBody Product product) {
         IProductServ serv = ServiceFactory.getProductService();
         serv.updateProduct(product);

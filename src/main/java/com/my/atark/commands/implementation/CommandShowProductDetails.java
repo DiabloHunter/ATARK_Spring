@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(path = "api/user")
+@RequestMapping(path = "api/product")
 public class CommandShowProductDetails{
 
     @GetMapping(path = "{id}")

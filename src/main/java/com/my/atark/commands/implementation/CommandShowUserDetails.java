@@ -7,7 +7,7 @@ import com.my.atark.service.ServiceFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/user")
+@RequestMapping(path = "api/administration/user")
 public class CommandShowUserDetails{
 
 

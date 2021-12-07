@@ -13,15 +13,23 @@ import com.epam.project.exceptions.ProductServiceException;
 import com.epam.project.service.IInvoiceServ;
 import com.epam.project.service.IProductServ;
 import com.epam.project.service.ServiceFactory;
+import com.my.atark.domain.Invoice;
+import com.my.atark.exceptions.ProductServiceException;
+import com.my.atark.service.IInvoiceServ;
+import com.my.atark.service.IProductServ;
+import com.my.atark.service.ServiceFactory;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
-public class CommandRemoveFromInvoice implements ICommand {
+@RestController
+@RequestMapping(path = "api/administration/user")
+public class CommandRemoveFromInvoice{
 
     private static final Logger log = Logger.getLogger(CommandRemoveFromInvoice.class);
 
-    @Override
     public ExecutionResult execute(SessionRequestContent content) {
         Configuration conf = Configuration.getInstance();
         ExecutionResult result = new ExecutionResult();
@@ -31,9 +39,9 @@ public class CommandRemoveFromInvoice implements ICommand {
                 result.setPage(conf.getPage("securityError"));
                 return result;
             }
-        
-            Long invCode = Long.parseLong( content.getRequestParameter("invCode")[0]);
-            String productCode =  content.getRequestParameter("productCode")[0];
+
+            Long invCode = Long.parseLong(content.getRequestParameter("invCode")[0]);
+            String productCode = content.getRequestParameter("productCode")[0];
             IInvoiceServ serv = ServiceFactory.getInvoiceService();
             if (serv.removeProductFromInvoice(invCode, productCode)) {
                 Invoice inv = serv.findInvoiceByOrderNumber(invCode);
@@ -44,15 +52,12 @@ public class CommandRemoveFromInvoice implements ICommand {
                 result.addRequestAttribute("command", "showInvoiceDetail");
                 result.addRequestAttribute("code", invCode);
                 result.setPage(conf.getPage("invoiceDetails"));
-            }
-            else {
+            } else {
                 result.addRequestAttribute("errorMessage", conf.getErrorMessage("removeProductFromInvoiceErr"));
                 result.setPage(Configuration.getInstance().getPage("error"));
             }
-        } catch (ProductServiceException | NullPointerException npe) {
-            log.error(npe);
-            result.addRequestAttribute("errorMessage", conf.getErrorMessage("removeProductFromInvoiceErr"));
-            result.setPage(Configuration.getInstance().getPage("error"));
+        }catch (ProductServiceException e) {
+            e.printStackTrace();
         }
         return result;
     }

@@ -1,26 +1,20 @@
 /*
 package com.my.atark.commands.implementation;
 
-import com.epam.project.commands.ICommand;
-import com.epam.project.config.Configuration;
-import com.epam.project.controller.Direction;
-import com.epam.project.controller.ExecutionResult;
-import com.epam.project.controller.SessionRequestContent;
-import com.epam.project.domain.User;
-import com.epam.project.domain.UserRole;
-import com.epam.project.service.IUserServ;
-import com.epam.project.service.ServiceFactory;
+import com.my.atark.domain.User;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class CommandSaveUserProfile implements ICommand {
 
-    private static final Logger log = Logger.getLogger(CommandSaveUserProfile.class);
+@RestController
+@RequestMapping(path = "api/user")
+public class CommandSaveUserProfile{
 
-    @Override
-    public ExecutionResult execute(SessionRequestContent content) {
-        Configuration conf = Configuration.getInstance();
-        ExecutionResult result = new ExecutionResult();
-        result.setDirection(Direction.FORWARD);
+    @PostMapping
+    public void execute(@RequestBody User user) {
         try {
             String userId = content.getRequestParameter("userId")[0];
             UserRole userRole = UserRole.valueOf(content.getRequestParameter("userRole")[0]);
@@ -54,4 +48,5 @@ public class CommandSaveUserProfile implements ICommand {
         }
         return result;
     }
-}*/
+}
+*/
