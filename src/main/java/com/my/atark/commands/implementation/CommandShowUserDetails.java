@@ -1,3 +1,4 @@
+/*
 package com.my.atark.commands.implementation;
 
 import com.my.atark.domain.User;
@@ -24,3 +25,4 @@ public class CommandShowUserDetails{
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.my.atark.commands.implementation;
 
 import com.my.atark.domain.Product;
@@ -17,3 +18,4 @@ public class CommandSaveUserProfileAsAdmin{
             userServ.updateUser(user);
     }
 }
+*/

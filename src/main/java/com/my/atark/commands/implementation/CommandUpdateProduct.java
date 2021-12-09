@@ -1,3 +1,4 @@
+/*
 package com.my.atark.commands.implementation;
 
 import com.my.atark.domain.Product;
@@ -16,3 +17,4 @@ public class CommandUpdateProduct {
         serv.updateProduct(product);
     }
 }
+*/

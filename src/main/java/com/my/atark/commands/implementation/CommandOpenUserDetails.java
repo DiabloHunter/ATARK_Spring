@@ -1,37 +1,31 @@
 /*
 package com.my.atark.commands.implementation;
 
-import com.epam.project.commands.ICommand;
-import com.epam.project.config.Configuration;
-import com.epam.project.controller.Direction;
-import com.epam.project.controller.ExecutionResult;
-import com.epam.project.controller.SessionRequestContent;
-import com.epam.project.domain.User;
-import com.epam.project.service.IUserServ;
-import com.epam.project.service.ServiceFactory;
+import com.my.atark.domain.Product;
+import com.my.atark.domain.User;
+import com.my.atark.exceptions.UnknownUserException;
+import com.my.atark.service.IUserServ;
+import com.my.atark.service.ServiceFactory;
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class CommandOpenUserDetails implements ICommand {
+@RestController
+@RequestMapping(path = "api/user")
+public class CommandOpenUserDetails {
 
-    private static final Logger log = Logger.getLogger(CommandOpenUserDetails.class);
-
-    @Override
-    public ExecutionResult execute(SessionRequestContent content) {
-        Configuration config = Configuration.getInstance();
-        ExecutionResult result = new ExecutionResult();
-        result.setDirection(Direction.FORWARD);
+    @GetMapping(path = "{id}")
+    public User execute(@PathVariable("id") String id) {
+        IUserServ serv = ServiceFactory.getUserService();
+        User user = null;
         try {
-            IUserServ serv = ServiceFactory.getUserService();
-            String code = content.getRequestParameter("userId")[0];
-            User user = serv.findUserById(Integer.parseInt(code));
-            result.addRequestAttribute("user", user);
-            result.setPage(config.getPage("userDetails"));
-        } catch (Exception e) {
-            log.error(e);
-            result.addRequestAttribute("errorMessage", config.getErrorMessage("editUserPageErr"));
-            result.setPage(config.getPage("error"));
+            user = serv.findUserById(Integer.parseInt(id));
+        } catch (UnknownUserException e) {
+            e.printStackTrace();
         }
-        return result;
+        return user;
     }
 }
 */

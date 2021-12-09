@@ -1,4 +1,3 @@
-/*
 package com.my.atark.controller;
 
 import com.my.atark.domain.Product;
@@ -72,4 +71,3 @@ public class ProductController {
         serv.deleteProduct(code);
     }
 }
-*/
